@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 引入 axios -->
+</head>
+<body>
+    <form>
+        <label for="namee">name:</label><input type="text" name='namee' id='namee'/>
+        <input type="button" value="提交" onclick="give()"/> <!--注意這邊就不用特別使用submit按鈕做提交，buttom就可以-->
+    </form>
+</body>
+<script>
+    function give(){
+        var x = document.getElementById('namee'); 
+        var txt = x.value; //取得數值。
+        //默認情況下，axios將JavaScript對象序列化為JSON。要以application / x-www-form-urlencoded格式發送數據，您可以使用以下選項之一。
+        const params = new URLSearchParams(); 
+        params.append( 'namee' , txt );
+        //post表單出去。
+        axios.post('/posttest',params)
+    }
+</script>
+</html>

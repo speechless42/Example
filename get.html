@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <table style="border: solid;" cellpadding="50px">
+            <tr id="id01" style="background-color: aqua;"></tr>
+            <tr id="id02"></tr>
+        </table>
+    </div>
+</body>
+<script>
+    var xmlhttp = new XMLHttpRequest(); //建立一個 xmlhttp 物件 透過XMLHttpRequest()
+    var url = "http://127.0.0.1:8000/api";//位址
+    xmlhttp.open("GET", url, true);//取得方法，取的位址，是否異步。
+    xmlhttp.send(); //發送請求
+    xmlhttp.onload = function(data) { //當資料全部跑完以後，才會觸發此事件
+    //console.log(xmlhttp.responseText);
+    var ans = JSON.parse(xmlhttp.responseText) //把資料轉JSON，存入ANS
+    myFunction(ans); //把ANS 存入副程式
+    }; 
+    function myFunction(arr) { //打印
+    //console.log(arr[0]);
+    var out = "";
+    var out1 = "";
+    var i;
+    for(i = 0; i < arr.length; i++) {
+        out += `<th>${arr[i].DAY}</th>`;
+        out1 +=`<th>${arr[i].CLASS}</th>`;
+    }
+    document.getElementById("id01").innerHTML = out;
+    document.getElementById("id02").innerHTML = out1;
+}
+</script>
+</html>
